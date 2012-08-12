@@ -7,7 +7,7 @@ Stable tag: 1.0
 Version: 1.0
 License: GPLv2
 
-Teleport is all about getting around WordPress quickly! Use keyboard shortcuts to get where you need to go be with just two key strokes.
+Teleport is all about getting around WordPress quickly! Use keyboard shortcuts to get where you need to go with just two key strokes.
 
 == Description ==
 
