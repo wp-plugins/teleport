@@ -14,6 +14,7 @@ jQuery(function($) {
 
 	function teleport_init() {
 		var overlay = $("#teleport_overlay");
+		var teleport = $("#teleport");
 		var teleporter = $("#teleporter");
 
 		teleporter.on("mouseenter", function(e) {
@@ -61,7 +62,7 @@ jQuery(function($) {
 		 $(window).on("keydown", function(e) {
 				if(!$(e.target).is('input, textarea')) {
 					if(e.which == 87) {
-						if(teleporter.is('.teleport_open')) {
+						if(teleporter.is(".teleport_open")) {
 							if($("#teleport_icon_teleporter").is('.teleport_login')) {
 								teleport_press("teleporter", 87);
 							} else {
@@ -74,7 +75,9 @@ jQuery(function($) {
 										$(".teleport_button").removeClass('teleport_open').hide();
 									});
 									setTimeout(function(){
-										jQuery("#teleporter").removeClass('teleport_open').hide('scale', 'fast');
+										jQuery("#teleporter").removeClass('teleport_open').hide('scale', 'fast', function(){
+											teleport.hide();
+										});
 									}, 200);
 								} else {
 									teleporter.removeClass('teleport_open').hide('scale', 'fast');		
@@ -82,6 +85,7 @@ jQuery(function($) {
 								overlay.fadeOut(500);
 							}
 					} else {
+							teleport.show();
 							teleporter.addClass('teleport_open').show('scale', 'fast', function(){
 								$("#teleport_third").show().animate({
 									marginLeft: "100px"
@@ -121,12 +125,15 @@ jQuery(function($) {
 									btn.removeClass('teleport_open').hide();
 								});
 								setTimeout(function(){
-									jQuery("#teleporter").removeClass('teleport_open').hide('scale', 'fast');
+									jQuery("#teleporter").removeClass('teleport_open').hide('scale', 'fast', function(){
+										teleport.hide();
+									});
 								}, 200);
 							} else {
 								teleporter.removeClass('teleport_open').hide('scale', 'fast');		
 							}
 							overlay.fadeOut(500);
+							teleport.hide();
 						 }
 					} else if(e.which == 81) {
 						teleport_press("teleport_fourth", e.which);

@@ -3,8 +3,8 @@ Contributors: srcoley
 Tags: navigation, utility, redirect, teleport, teleporter, keyboard shortcuts 
 Requires at least: 2.0.2
 Tested up to: 3.4.1
-Stable tag: 1.0
-Version: 1.0
+Stable tag: 1.0.1
+Version: 1.0.1
 License: GPLv2
 
 Teleport is all about getting around WordPress quickly! Use keyboard shortcuts to get where you need to go with just two key strokes.
@@ -73,6 +73,11 @@ Google Chrome, Safari, Firefox, and Internet Explorer 9 and higher. I may add su
 
 First version.
 
+= 1.0.1 =
+
+* Fixed bug that prevented users from using forms
+* Added assets folder
+
 
 == Upgrade Notice ==
 
@@ -80,4 +85,6 @@ First version.
 
 This is the best version yet!
 
+= 1.0.1 =
 
+This patch fixes a pretty huge bug that prevented the usrs from using any forms. Upgrade asap!
