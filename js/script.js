@@ -43,7 +43,7 @@ jQuery(function($) {
 			});
 		});
 
-		$(".teleport_back").on("click", function(e, el){
+		$(".teleport_back").css("cursor", "pointer").on("click", function(e, el){
 			if(teleporter.is('.teleport_open')) {
 				window.location = $(this).data('url');
 			}
@@ -106,12 +106,12 @@ jQuery(function($) {
 								}, 200);
 							});
 							overlay.fadeIn(500, function(){
-								var teleport_icon_teleporter = $("#teleport_icon_teleporter");
+								/*var teleport_icon_teleporter = $("#teleport_icon_teleporter");
 								if(teleport_icon_teleporter.is('.teleport_login')) {
 									teleport_icon_teleporter.fadeOut('fast', function() {
 										$(this).addClass('teleport_login_icon').fadeIn('fast');
 									});
-								}
+								}*/
 							});
 						}
 					} else if(e.which == 27) {

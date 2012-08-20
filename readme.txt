@@ -3,8 +3,8 @@ Contributors: srcoley
 Tags: navigation, utility, redirect, teleport, teleporter, keyboard shortcuts 
 Requires at least: 2.0.2
 Tested up to: 3.4.1
-Stable tag: 1.0.1
-Version: 1.0.1
+Stable tag: 1.1
+Version: 1.1
 License: GPLv2
 
 Teleport is all about getting around WordPress quickly! Use keyboard shortcuts to get where you need to go with just two key strokes.
@@ -21,21 +21,17 @@ The Teleporter can be activated from anywhere on your site except the admin area
 
 [youtube http://www.youtube.com/watch?v=DF_1xXAPQFc]
 
-**While Logged Out**
+If you are logged out, you will be asked to log in before being redirected to the disired location.
 
-*	w - Redirects to the login page
-*	esc - Closes the Teleporter
-
-**While Logged In**
+First press "w", then choose from the following:
 
 *	e - (Edit) Edit current post/page
 *	d - (Dashboard) Redirects to the Dashboard
 *	s - (Settings) Redirects to the Settings page
 *	a - (Archive) Redirects to Posts/Pages/Custom Post Types
-*	q - (Quit) Logs the current user out
-*	w - Pressing this a second time will close the Teleporter
+*	q - (Quit) Logs the current user out / Redirects to Log In page
+*	w - Close Teleporter / Log in
 *	esc - Closes the Teleporter
-
 
 == Installation ==
 
@@ -78,6 +74,10 @@ First version.
 * Fixed bug that prevented users from using forms
 * Added assets folder
 
+= 1.1 =
+
+* Added navigational buttons and keyboard shortcuts for logged out users
+
 
 == Upgrade Notice ==
 
@@ -88,3 +88,6 @@ This is the best version yet!
 = 1.0.1 =
 
 This patch fixes a pretty huge bug that prevented the usrs from using any forms. Upgrade asap!
+
+= 1.1 =
+This update makes the logged in and out views look the same. If you're not logged in, you will be prompted to do so before being redirected.
