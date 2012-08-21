@@ -1,0 +1,198 @@
+#teleport {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	display: none;
+}
+
+#teleport_overlay {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #333;
+	opacity: .5;
+	display: none;
+	z-index: 99997;
+}
+
+#teleporter {
+	display: none;
+	background-color: #c06;
+	border: 3px solid #ebebeb;
+	height: 150px;
+	-moz-border-radius:75px;
+	-webkit-border-radius: 75px;
+	-khtml-border-radius: 75px;
+	border-radius:75px;
+	width: 150px;
+	position: fixed;
+	top: 30%;
+	left: 50%;
+	margin-left: -75px;   
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+	-webkit-box-shadow:  0px 0px 5px 0px rgba(0, 0, 0, .5);
+	box-shadow:  0px 0px 5px 0px rgba(0, 0, 0, .5);
+	z-index: 99999;
+}
+
+#teleporter.teleport_pressed {
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ededed 0%, #f6f6f6 47%, #ffffff 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(47%,#f6f6f6), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ededed 0%,#f6f6f6 47%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ededed 0%,#f6f6f6 47%,#ffffff 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ededed 0%,#f6f6f6 47%,#ffffff 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ededed 0%,#f6f6f6 47%,#ffffff 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+	-webkit-box-shadow:  0px 0px 5px 0px rgba(0, 0, 0, .3);
+	box-shadow:  0px 0px 5px 0px rgba(0, 0, 0, .3);
+}
+
+.ie #teleporter {
+	background: url(../images/big_button.png) no-repeat center center;
+	box-shadow: none;
+	border: 0px;
+	filter: none;
+}
+
+.ie #teleporter.teleport_pressed {
+	background: url(../images/big_button_pressed.png) no-repeat center center;
+}
+
+#teleporter #teleport_icon_teleporter {
+	width: 100%;
+	height: 100%;
+	background: url('../images/wordpress.png') no-repeat center center;
+	background-size: contain;    
+}
+
+#teleporter #teleport_dknewmedia {
+	width: 100%;
+	height: 100%;
+	background: url('../images/dknewmedia.png') no-repeat center center;
+}
+
+.teleport_face {
+	position: absolute;
+}
+
+.teleport_front.teleport_face {
+	z-index: 999991;
+}
+
+.teleport_back.teleport_face {
+	z-index: 999990;
+	display: none;
+	cursor: pointer;
+}
+
+.teleport_button {
+	display: none;
+	border: 1px solid #ebebeb;
+	height: 50px;
+	-moz-border-radius:25px;
+	-webkit-border-radius: 25px;
+	-khtml-border-radius: 25px;
+	border-radius:25px;
+	width: 50px;
+	position: fixed;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+	-webkit-box-shadow:  0px 0px 3px 0px rgba(0, 0, 0, .5);
+	box-shadow:  0px 0px 3px 0px rgba(0, 0, 0, .5);
+	z-index: 99998;
+	cursor: pointer;
+}
+
+.ie .teleport_button {
+	background: url(../images/big_button.png) no-repeat center center;
+	box-shadow: none;
+	border: 0px;
+	filter: none;
+}
+
+.teleport_button.teleport_pressed {
+	background: #ededed; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ededed 0%, #f6f6f6 53%, #ffffff 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(53%,#f6f6f6), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ededed 0%,#f6f6f6 53%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ededed 0%,#f6f6f6 53%,#ffffff 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ededed 0%,#f6f6f6 53%,#ffffff 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ededed 0%,#f6f6f6 53%,#ffffff 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+	-webkit-box-shadow:  0px 0px 3px 0px rgba(0, 0, 0, .3);
+	box-shadow:  0px 0px 3px 0px rgba(0, 0, 0, .3);
+}
+
+.teleport_icon {
+	width: 100%;
+	height: 100%;
+	background-size: contain;
+}
+
+#teleport_first {
+	top: 32%;
+	left: 50%;
+	margin: 5px 0 0 -25px;
+}
+
+#teleport_icon_first {
+	background: url('../images/settings_icon.png') no-repeat center center;
+}
+
+#teleport_second {
+	top: 32%;
+	left: 50%;
+	margin: 5px 0 0 -25px;
+}
+
+#teleport_icon_second {
+	background: url('../images/dash_icon.png') no-repeat center center;
+}
+
+#teleport_third {
+	top: 35%;
+	left: 50%;
+	margin: 5px 0 0 -25px;
+}
+
+#teleport_icon_third {
+	background: url('../images/edit_icon.png') no-repeat center center;
+}
+
+#teleport_fourth {
+	top: 35%;
+	left: 50%;
+	margin: 5px 0 0 -25px;
+}
+
+#teleport_icon_fourth {
+	background: url('../images/logout_icon.png') no-repeat center center;
+}
+
+#teleport_fifth {
+	top: 32%;
+	left: 50%;
+	margin: 5px 0 0 -25px;
+}
+
+#teleport_icon_fifth {
+	background: url('../images/archive_icon.png') no-repeat center center;
+}
