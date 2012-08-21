@@ -3,7 +3,7 @@
 	Plugin Name: Teleport
 	Plugin URI: http://wordpress.org/extend/plugins/teleport/
 	Description: Teleport is all about getting around WordPress quickly! It uses keyboard shortcuts to get you to the most important places with just two taps. The intuitive teleporter is arranged exactly like the keyboard shortcuts - the e, d, s, a, and q keys make a 'u' shape around the w key. This matches the layout the teleporter. <strong>To get started:</strong> 1) Activate the plugin. 2) Go to your homepage. 3) Once the page has finished loading, press "w". This will activate the teleporter. To learn more about the teleporter, read the plugin documentation.
-	Version: 1.1
+	Version: 1.2
 	Author: Stephen Coley
 	Author URI: http://dknewmedia.com
 
@@ -63,6 +63,15 @@
 		}
 	}
 
+	// Determines if link requires a login redirect
+	function teleport_url($url) {
+		if(!is_user_logged_in()) {
+			return wp_login_url($url);
+		} else {
+			return $url;
+		}
+	}
+
 	// This ajax handler gets appended to the body tag.
 	// This puts the Teleport markup on the site.
 	// Links are formatted here as well.
@@ -84,38 +93,44 @@
 		$archive = get_bloginfo('wpurl') . "/wp-admin/edit.php?post_type=" . get_post_type($postid);
 		// If the user is logged in, show the full Teleporter
 		if(is_user_logged_in()) {
-echo '</p><div id="teleport">
+			$logger = wp_logout_url($cururl);
+		} else {
+			$logger = wp_login_url();
+		}
+echo '<div id="teleport">
 	<div id="teleport_overlay"></div>
 	<div id="teleporter">
 		 <div id="teleport_icon_teleporter" class="teleport_front teleport_face"></div>
 		 <div id="teleport_dknewmedia" class="teleport_back teleport_face" data-url="http://dknewmedia.com"></div>
-	</div>		
+	</div>
 	<div id="teleport_first" class="teleport_button">
-		<div id="teleport_icon_first" class="teleport_icon" data-url="' . get_bloginfo('wpurl') . '/wp-admin/options-general.php"></div>
+		<div id="teleport_icon_first" class="teleport_icon" data-url="' . teleport_url(get_bloginfo('wpurl') . '/wp-admin/options-general.php') . '"></div>
 	</div>
 	<div id="teleport_second" class="teleport_button">
-		<div id="teleport_icon_second" class="teleport_icon" data-url="' . get_bloginfo('wpurl') . '/wp-admin/index.php"></div>
+	<div id="teleport_icon_second" class="teleport_icon" data-url="' . teleport_url(get_bloginfo('wpurl') . '/wp-admin/index.php') . '"></div>
 	</div>
 	<div id="teleport_third" class="teleport_button">
-		<div id="teleport_icon_third" class="teleport_icon" data-url="' . $edit . '"></div>
+		<div id="teleport_icon_third" class="teleport_icon" data-url="' . teleport_url($edit) . '"></div>
 	</div>
 	<div id="teleport_fourth" class="teleport_button">
-		<div id="teleport_icon_fourth" class="teleport_icon" data-url="' . wp_logout_url($cururl) . '"></div>
+		<div id="teleport_icon_fourth" class="teleport_icon" data-url="' . $logger . '"></div>
 	</div>
 	<div id="teleport_fifth" class="teleport_button">
-		<div id="teleport_icon_fifth" class="teleport_icon" data-url="' . $archive . '"></div>
+		<div id="teleport_icon_fifth" class="teleport_icon" data-url="' . teleport_url($archive) . '"></div>
 	</div>
 </div>';
-		// If the user isn't logged in, show the login Teleporter
-		} else {
-echo '</p><div id="teleport">
-	<div id="teleport_overlay"></div>
-	<div id="teleporter">
-		 <div id="teleport_icon_teleporter" class="teleport_front teleport_face teleport_login"></div>
-		 <div id="teleport_dknewmedia" class="teleport_back teleport_face teleport_dash" data-url="' . wp_login_url() . '"></div>
-	</div>		
-	<div id="teleport_first" class="teleport_button">
-		<div id="teleport_icon_first" class="teleport_icon" data-url="' . wp_login_url(get_bloginfo('wpurl') . '/wp-admin/options-general.php') . '"></div>
+		// Quit execution, required by WP
+		die();
+	}
+
+	// Hook it up
+	add_action('init', 'teleport_init');
+	add_action('wp_head', 'teleport_head');
+	add_action('wp_ajax_teleport', 'teleport_ajax');
+	add_action('wp_ajax_nopriv_teleport', 'teleport_ajax');
+
+?>
+min/options-general.php') . '"></div>
 	</div>
 	<div id="teleport_second" class="teleport_button">
 	<div id="teleport_icon_second" class="teleport_icon" data-url="' . wp_login_url(get_bloginfo('wpurl') . '/wp-admin/index.php') . '"></div>

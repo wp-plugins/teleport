@@ -3,8 +3,8 @@ Contributors: srcoley
 Tags: navigation, utility, redirect, teleport, teleporter, keyboard shortcuts 
 Requires at least: 2.0.2
 Tested up to: 3.4.1
-Stable tag: 1.1
-Version: 1.1
+Stable tag: 1.2
+Version: 1.2
 License: GPLv2
 
 Teleport is all about getting around WordPress quickly! Use keyboard shortcuts to get where you need to go with just two key strokes.
@@ -78,6 +78,12 @@ First version.
 
 * Added navigational buttons and keyboard shortcuts for logged out users
 
+= 1.2 =
+
+* Fixes animation glitches
+* Got rid of some duplicate code
+* Fixed teleporter hoverstate
+
 
 == Upgrade Notice ==
 
@@ -91,3 +97,6 @@ This patch fixes a pretty huge bug that prevented the usrs from using any forms.
 
 = 1.1 =
 This update makes the logged in and out views look the same. If you're not logged in, you will be prompted to do so before being redirected.
+
+= 1.2 =
+This update fixes some animation glitches.

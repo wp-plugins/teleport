@@ -18,6 +18,7 @@ jQuery(function($) {
 		var teleporter = $("#teleporter");
 
 		teleporter.on("mouseenter", function(e) {
+			teleporter.addClass("teleport_hover");
 			var front = $(".teleport_front"); 
 			var back = $(".teleport_back");
 			if(!back.is('.teleport_mouseover')) {
@@ -33,14 +34,17 @@ jQuery(function($) {
 			}
 			back.addClass("teleport_mouseover");
 		}).on("mouseleave", function(e) {
-			var front = $(".teleport_front"); 
-			var back = $(".teleport_back");
-			back.removeClass('teleport_mouseover');
-			back.css("z-index", "999990").stop().hide('fade', 'fast', function(){
-				front.css("z-index", "999991").stop().show('scale', 'fast', function(){
-					front.animate({rotate: '+=360deg'});
+			if(teleporter.is(".teleport_hover")) {
+				teleporter.removeClass("teleport_hover");
+				var front = $(".teleport_front"); 
+				var back = $(".teleport_back");
+				back.removeClass('teleport_mouseover');
+				back.css("z-index", "999990").stop().hide('fade', 'fast', function(){
+					front.css("z-index", "999991").stop().show('scale', 'fast', function(){
+						front.animate({rotate: '+=360deg'});
+					});
 				});
-			});
+			}
 		});
 
 		$(".teleport_back").css("cursor", "pointer").on("click", function(e, el){
@@ -62,29 +66,57 @@ jQuery(function($) {
 		 $(window).on("keydown", function(e) {
 				if(!$(e.target).is('input, textarea')) {
 					if(e.which == 87) {
-						if(teleporter.is(".teleport_open")) {
-							if($("#teleport_icon_teleporter").is('.teleport_login')) {
-								teleport_press("teleporter", 87);
-							} else {
-								var btn = $(".teleport_button");
-								if(btn.length > 0) {
-									btn.animate({
-										marginTop: "5px",
-										marginLeft: "-25px"
-									}, 200, function(){
-										$(".teleport_button").removeClass('teleport_open').hide();
-									});
-									setTimeout(function(){
-										jQuery("#teleporter").removeClass('teleport_open').hide('scale', 'fast', function(){
+						if(teleporter.is(".teleport_open") && teleporter.is(".teleport_hover")) {
+							var front = $(".teleport_front"); 
+							var back = $(".teleport_back");
+							back.removeClass('teleport_mouseover');
+							back.css("z-index", "999990").stop().hide('fade', 'fast', function(){
+								front.css("z-index", "999991").stop().show('scale', 'fast', function(){
+									teleporter.removeClass("teleport_hover");
+									front.animate({rotate: '+=360deg'}, function(){
+										var btn = $(".teleport_button");
+										if(btn.length > 0) {
+											btn.animate({
+												marginTop: "5px",
+												marginLeft: "-25px"
+											}, 200, function(){
+												btn.removeClass('teleport_open').hide();
+											});
+											setTimeout(function(){
+												jQuery("#teleporter").removeClass('teleport_open').hide('scale', 'fast', function(){
+													teleport.hide();
+												});
+											}, 200);
+										} else {
+											teleporter.removeClass('teleport_open').hide('scale', 'fast');		
+										}
+										overlay.fadeOut(500, function(){
 											teleport.hide();
-										});
-									}, 200);
-								} else {
-									teleporter.removeClass('teleport_open').hide('scale', 'fast');		
-								}
-								overlay.fadeOut(500);
+										});		
+									});
+								});
+							});
+						} else if(teleporter.is(".teleport_open") && !teleporter.is(".teleport_hover")) {
+							var btn = $(".teleport_button");
+							if(btn.length > 0) {
+								btn.animate({
+									marginTop: "5px",
+									marginLeft: "-25px"
+								}, 200, function(){
+									btn.removeClass('teleport_open').hide();
+								});
+								setTimeout(function(){
+									jQuery("#teleporter").removeClass('teleport_open').hide('scale', 'fast', function(){
+										teleport.hide();
+									});
+								}, 200);
+							} else {
+								teleporter.removeClass('teleport_open').hide('scale', 'fast');		
 							}
-					} else {
+							overlay.fadeOut(500, function(){
+								teleport.hide();
+							});
+						} else {
 							teleport.show();
 							teleporter.addClass('teleport_open').show('scale', 'fast', function(){
 								$("#teleport_third").show().animate({
@@ -105,17 +137,11 @@ jQuery(function($) {
 									marginTop: "120px"
 								}, 200);
 							});
-							overlay.fadeIn(500, function(){
-								/*var teleport_icon_teleporter = $("#teleport_icon_teleporter");
-								if(teleport_icon_teleporter.is('.teleport_login')) {
-									teleport_icon_teleporter.fadeOut('fast', function() {
-										$(this).addClass('teleport_login_icon').fadeIn('fast');
-									});
-								}*/
-							});
+							overlay.fadeIn(500);
 						}
 					} else if(e.which == 27) {
 						 if(teleporter.is('.teleport_open')) {
+							teleporter.mouseleave();
 							var btn = $(".teleport_button");
 							if(btn.length > 0) {
 								btn.animate({
@@ -132,8 +158,9 @@ jQuery(function($) {
 							} else {
 								teleporter.removeClass('teleport_open').hide('scale', 'fast');		
 							}
-							overlay.fadeOut(500);
-							teleport.hide();
+							overlay.fadeOut(500, function(){
+								teleport.hide();
+							});
 						 }
 					} else if(e.which == 81) {
 						teleport_press("teleport_fourth", e.which);
@@ -154,7 +181,7 @@ jQuery(function($) {
 function teleport_press(name, key) {
 	if(jQuery("#teleporter").is('.teleport_open')) {
 		var btn = jQuery("#" + name);
-		var url = btn.children('.teleport_icon, .teleport_front, .teleport_login').data('url');
+		var url = btn.children('.teleport_icon, .teleport_front').data('url');
 		btn.addClass('teleport_pressed');
 		jQuery(window).on("keyup", function(e){
 			if(e.which == key) {
