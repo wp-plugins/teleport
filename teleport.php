@@ -130,30 +130,3 @@ echo '<div id="teleport">
 	add_action('wp_ajax_nopriv_teleport', 'teleport_ajax');
 
 ?>
-n/options-general.php') . '"></div>
-	</div>
-	<div id="teleport_second" class="teleport_button">
-	<div id="teleport_icon_second" class="teleport_icon" data-url="' . wp_login_url(get_bloginfo('wpurl') . '/wp-admin/index.php') . '"></div>
-	</div>
-	<div id="teleport_third" class="teleport_button">
-		<div id="teleport_icon_third" class="teleport_icon" data-url="' . wp_login_url($edit) . '"></div>
-	</div>
-	<div id="teleport_fourth" class="teleport_button">
-		<div id="teleport_icon_fourth" class="teleport_icon" data-url="' . wp_login_url($cururl) . '"></div>
-	</div>
-	<div id="teleport_fifth" class="teleport_button">
-		<div id="teleport_icon_fifth" class="teleport_icon" data-url="' . wp_login_url($archive) . '"></div>
-	</div>
-</div>';
-		}
-		// Quit execution, required by WP
-		die();
-	}
-
-	// Hook it up
-	add_action('init', 'teleport_init');
-	add_action('wp_head', 'teleport_head');
-	add_action('wp_ajax_teleport', 'teleport_ajax');
-	add_action('wp_ajax_nopriv_teleport', 'teleport_ajax');
-
-?>
