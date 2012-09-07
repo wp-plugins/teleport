@@ -3,7 +3,7 @@
 	Plugin Name: Teleport
 	Plugin URI: http://wordpress.org/extend/plugins/teleport/
 	Description: Teleport is all about getting around WordPress quickly! It uses keyboard shortcuts to get you to the most important places with just two taps. The intuitive teleporter is arranged exactly like the keyboard shortcuts - the e, d, s, a, and q keys make a 'u' shape around the w key. This matches the layout the teleporter. <strong>To get started:</strong> 1) Activate the plugin. 2) Go to your homepage. 3) Once the page has finished loading, press "w". This will activate the teleporter. To learn more about the teleporter, read the plugin documentation.
-	Version: 1.2.1
+	Version: 1.2.3
 	Author: Stephen Coley
 	Author URI: http://dknewmedia.com
 
@@ -81,6 +81,12 @@
 		$cururl = $_POST['cururl'];
 		$type = $_POST['type'];
 		$front_id = $_POST['front_id'];
+		$is_admin = $_POST['admin'];
+		teleport_teleporter($postid, $cururl, $type, $front_id, $is_admin);
+		die();
+	}
+
+	function teleport_teleporter($postid, $cururl, $type, $front_id, $is_admin) {
 		// If no home page is set...
 		if($front_id == 0) {
 			// Edit posts
@@ -97,36 +103,67 @@
 		} else {
 			$logger = wp_login_url();
 		}
+		
+		if($is_admin) {
+			$set_option = "teleport_admin_warp";
+			$get_option = "teleport_site_warp";
+		} else {
+			$set_option = "teleport_site_warp";
+			$get_option = "teleport_admin_warp";
+		}
+		$warp = get_option($get_option);
+		if($warp == FALSE) {
+			$warp = "";
+		}
+		if($url = get_option($set_option)) {
+			update_option($set_option, $cururl);
+		} else {
+			add_option($set_option, $cururl);
+		}
+		
 echo '<div id="teleport">
 	<div id="teleport_overlay"></div>
 	<div id="teleporter">
-		 <div id="teleport_icon_teleporter" class="teleport_front teleport_face"></div>
+	<div id="teleport_icon_teleporter" class="teleport_front teleport_face" data-warp="' . $warp . '"></div>
 		 <div id="teleport_dknewmedia" class="teleport_back teleport_face" data-url="http://dknewmedia.com"></div>
 	</div>
 	<div id="teleport_first" class="teleport_button">
-		<div id="teleport_icon_first" class="teleport_icon" data-url="' . teleport_url(get_bloginfo('wpurl') . '/wp-admin/options-general.php') . '"></div>
+		<div id="teleport_icon_first" class="teleport_icon" data-url="' . teleport_url(get_bloginfo('wpurl') . '/wp-admin/options-general.php') . '" title="Settings"></div>
 	</div>
 	<div id="teleport_second" class="teleport_button">
-	<div id="teleport_icon_second" class="teleport_icon" data-url="' . teleport_url(get_bloginfo('wpurl') . '/wp-admin/index.php') . '"></div>
+	<div id="teleport_icon_second" class="teleport_icon" data-url="' . teleport_url(get_bloginfo('wpurl') . '/wp-admin/index.php') . '" title="Dashboard"></div>
 	</div>
 	<div id="teleport_third" class="teleport_button">
-		<div id="teleport_icon_third" class="teleport_icon" data-url="' . teleport_url($edit) . '"></div>
+		<div id="teleport_icon_third" class="teleport_icon" data-url="' . teleport_url($edit) . '" title="Edit"></div>
 	</div>
 	<div id="teleport_fourth" class="teleport_button">
-		<div id="teleport_icon_fourth" class="teleport_icon" data-url="' . $logger . '"></div>
+		<div id="teleport_icon_fourth" class="teleport_icon" data-url="' . $logger . '" title="Log in/out"></div>
 	</div>
 	<div id="teleport_fifth" class="teleport_button">
-		<div id="teleport_icon_fifth" class="teleport_icon" data-url="' . teleport_url($archive) . '"></div>
+		<div id="teleport_icon_fifth" class="teleport_icon" data-url="' . teleport_url($archive) . '" title="Archive"></div>
 	</div>
 </div>';
-		// Quit execution, required by WP
+	}
+
+	function teleport_set_warp() {
+		$warp_url = $_POST['url'];
+		$warp_type = $_POST['type'];
+		$option = "teleport_" . $warp_type . "_url";
+		if($warp_type == "site" || $warp_type == "admin") {
+			if($url = get_option($option)) {
+				add_option($option, $warp_url);
+			} else {
+				update_option($option, $warp_url);
+			}
+		}
 		die();
 	}
 
 	// Hook it up
 	add_action('init', 'teleport_init');
+	add_action('admin_init', 'teleport_init');
 	add_action('wp_head', 'teleport_head');
+	add_action('admin_init', 'teleport_head');
 	add_action('wp_ajax_teleport', 'teleport_ajax');
 	add_action('wp_ajax_nopriv_teleport', 'teleport_ajax');
-
 ?>

@@ -2,9 +2,9 @@
 Contributors: srcoley
 Tags: navigation, utility, redirect, teleport, teleporter, keyboard shortcuts 
 Requires at least: 2.0.2
-Tested up to: 3.4.1
-Stable tag: 1.2.1
-Version: 1.2.1
+Tested up to: 3.4.2
+Stable tag: 1.2.3
+Version: 1.2.3
 License: GPLv2
 
 Teleport is all about getting around WordPress quickly! Use keyboard shortcuts to get where you need to go with just two key strokes.
@@ -88,6 +88,15 @@ First version.
 
 * Fixes major bug that outputs error messages
 
+= 1.2.2 =
+
+* Added title attributes to the Teleport buttons
+
+= 1.2.3 =
+
+* Added ability to close the Teleporter by clicking the dimmed out site behind it
+* Added page tracking for the upcoming warp feature
+* Wrapped javascript in an anonymous function to prevent conflicts
 
 == Upgrade Notice ==
 
@@ -107,3 +116,9 @@ This update fixes some animation glitches.
 
 = 1.2.1 =
 Urgent update! If you're running 1.2, please update now. This update fixes a bug that outputs unexpected errors.
+
+= 1.2.2 =
+This update adds title attributes to the Teleport buttons. If you forget which button does what, you can now hover over the button to see it's function.
+
+== 1.2.3 =
+This update improves javascript for better compatability and allows you to close the Teleporter by clicking the dimmed out site behind it. 
