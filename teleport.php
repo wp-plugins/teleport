@@ -3,11 +3,11 @@
 	Plugin Name: Teleport
 	Plugin URI: http://wordpress.org/extend/plugins/teleport/
 	Description: Teleport is all about getting around WordPress quickly! It uses keyboard shortcuts to get you to the most important places with just two taps. The intuitive teleporter is arranged exactly like the keyboard shortcuts - the e, d, s, a, and q keys make a 'u' shape around the w key. This matches the layout the teleporter. <strong>To get started:</strong> 1) Activate the plugin. 2) Go to your homepage. 3) Once the page has finished loading, press "w". This will activate the teleporter. To learn more about the teleporter, read the plugin documentation.
-	Version: 1.2.3
-	Author: Stephen Coley
+	Version: 1.2.4
+	Author: Stephen Coley, Douglas Karr
 	Author URI: http://dknewmedia.com
 
-	Copyright 2012 DK New Media  (email : stephen@dknewmedia.com)
+	Copyright 2014 DK New Media  (email : info@dknewmedia.com)
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License, version 2, as 
