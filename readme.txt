@@ -2,7 +2,7 @@
 Contributors: srcoley, douglaskarr
 Tags: navigation, utility, redirect, teleport, teleporter, keyboard shortcuts, menu 
 Requires at least: 2.0.2
-Tested up to: 4.0.0
+Tested up to: 2.3.0
 Stable tag: 1.2.4
 Version: 1.2.4
 License: GPLv2
